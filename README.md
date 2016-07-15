@@ -23,10 +23,17 @@ cat site_depth.ldepth | vcf_cutoff_stats.R > vcf_depth_summary.txt
 #reference.fa.filter.py
 Stephen A. Sefick
 July 15, 2016
+
 Use this script to remove sequences from a
+
 fasta file that match a supplied pattern
+
 example usage:
+
 ./reference.fa.filter.py ">Unknown" dp4.fa.masked out
+
 ">Unknown" is the pattern
+
 dp4.fa.masked is the reference genome
+
 out is the outfile
