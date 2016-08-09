@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/home/ssefick/anaconda3/bin/python3
 
 '''
 ##################################################################
@@ -54,11 +54,11 @@ output_file_name = sys.argv[2]
 
 shebang = "#!/bin/bash"
 
-nodes = raw_input("number of nodes: ")
-ppn = raw_input("processors per node: ")
-mem = raw_input("memory per cpu: ")
-walltime = raw_input("Walltime (hh:mm:ss): ")
-jobname = raw_input("Job Name: ")
+nodes = input("number of nodes: ")
+ppn = input("processors per node: ")
+mem = input("memory per cpu: ")
+walltime = input("Walltime (hh:mm:ss): ")
+jobname = input("Job Name: ")
 
 with open(output_file_name, "w") as out:
         out.write("%s \n" % shebang)
