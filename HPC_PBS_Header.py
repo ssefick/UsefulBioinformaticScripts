@@ -1,4 +1,4 @@
-#!/home/ssefick/anaconda3/bin/python3
+#!/usr/bin/env python
 
 '''
 ##################################################################
@@ -7,6 +7,8 @@
 Author: Stephen A. Sefick Jr.
 
 Last Update: 20160730
+
+Python: Version 3.5 (Anaconda)
 
 Purpose: This script produces a PBS header to be used with Torque/Moab qsub command. This script will prompt the user for input and write to script template.
 
