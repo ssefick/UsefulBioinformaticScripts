@@ -82,7 +82,7 @@ while (<INPUT>) {
     #GT:DP:RGQ
     if($chunk[8]=~/GT:DP:RGQ/){
       #if(int($list_var[2])>=30){
-      if(int($list_var[2])>=ARGV[2]){
+      if(int($list_var[2])>=$ARGV[2]){
 	#same as above comments		
 	my @name=$ARGV[1];
 	my $output = $name[0] . ".vcf";
