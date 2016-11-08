@@ -1,5 +1,7 @@
 # UsefulBioinformaticScripts
 
+[![DOI](https://zenodo.org/badge/62635667.svg)](https://zenodo.org/badge/latestdoi/62635667)
+
 I am posting Useful Bioinformatics scripts here that I find useful.
 
 ##vcf_cutoff_stats.R
