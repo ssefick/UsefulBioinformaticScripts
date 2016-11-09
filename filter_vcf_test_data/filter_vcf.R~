@@ -1,0 +1,63 @@
+library("VariantAnnotation")
+
+ref <- "rheMac3"
+
+x <- readVcf("test.vcf.gz", genome=ref)
+
+#prefilter
+#only those that have RGQ
+isRGQ <- function(x) {
+grepl("RGQ", x, fixed=TRUE)
+}
+
+#filters
+RGQ_filter <- function(x, value=30) {
+## Filter on RGQ > value; default is 30
+
+test <- apply(geno(x)$RGQ>=value, 1, sum)==4
+
+out <- is.na(test) & test  
+
+out[is.na(out)] <- TRUE
+    
+return(out)
+    
+}
+
+prefilters <- FilterRules(list(RGQ_prefilter=isRGQ))
+
+filters <- FilterRules(list(RGQ_filter=RGQ_filter))
+
+
+file.gz <- "test.vcf.gz"
+
+file.gz.tbi <- "test.vcf.gz.tbi"
+
+destination.file <- "test2.vcf.gz"
+
+size=1
+
+tabix.file <- TabixFile(file.gz, yieldSize=size)
+
+filterVcf(tabix.file, ref, destination.file, filters=filters, verbose=TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
