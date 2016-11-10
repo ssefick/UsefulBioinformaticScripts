@@ -1,6 +1,11 @@
 #!/usr/bin/env Rscript
 
-################################################################################
+############################################################################################
+
+############################################################################################
+#Typical Usage
+#./filter_RGQ_gVCF_working_CHUNKS.R -i test.vcf.gz -t test.vcf.gz.tbi -RGQ 30 -o test2 -C 10
+############################################################################################
 
 require(argparse)
 
@@ -21,6 +26,9 @@ parser$add_argument("-o", "--output_vcf", action="store", default="Filtered Vcf"
 parser$add_argument("-RGQ", "--Reference_Genotype_Quality", action="store", default=30, dest="RGQ_value",
  help="Default: %(default)s")
 
+parser$add_argument("-C", "--CHUNKS", action="store", default=1, dest="CHUNKS",
+ help="Number of CHUNKS defaults to %(default)s")
+
 
 # get command line options, if help option encountered print help and exit,
 # otherwise if options not found on command line then set defaults,
@@ -33,10 +41,20 @@ input <- argv["input_vcf"][[1]]
 output <- argv["output_vcf"][[1]]
 RGQ_value <- argv["RGQ_value"][[1]]
 tabix  <- argv["input_tabix"][[1]]
-
+CHUNKS  <- argv["CHUNKS"][[1]]
 ################################################################################
 
+#test data
 
+test <- 0
+
+if(test==1){
+input <- "test.vcf.gz"
+tabix <- "test.vcf.gz.tbi"
+RGQ_value <- 30
+output <-  "test2"
+CHUNKS <- 10
+}
 
 library("VariantAnnotation")
 
@@ -79,7 +97,7 @@ file.gz.tbi <- tabix
 
 destination.file <- output
 
-size=10
+size  <- CHUNKS
 
 tabix.file <- open(TabixFile(file.gz, yieldSize=size))
     
@@ -90,7 +108,9 @@ filterVcf(file=tabix.file, genome=ref, destination=destination.file, filters=fil
 
 close(tabix.file)
 
-
+if(length(warnings)>0){
+print(warnings())
+}
 
 
 
