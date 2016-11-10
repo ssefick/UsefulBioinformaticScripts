@@ -42,7 +42,7 @@ library("VariantAnnotation")
 
 ref <- "rheMac3"
 
-x <- readVcf("test.vcf.gz", genome=ref)
+#x <- readVcf("test.vcf.gz", genome=ref)
 
 #prefilter
 #only those that have RGQ
