@@ -1,0 +1,15 @@
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /home/ssefick/scratch/arctoides/ORINGINAL_GVCF_MACAQUE_COMBINED/split/chrM_Annotations/filtered_chrM_RGQ_VQSR_ANNOTATED.vcf
+	--out /home/ssefick/scratch/arctoides/ORINGINAL_GVCF_MACAQUE_COMBINED/split/chrM_Annotations/M_Assamensis_filtered_chrM_RGQ_VQSR_ANNOTATED
+	--recode
+	--indv M_Assamensis
+
+Keeping individuals in 'keep' list
+After filtering, kept 1 out of 4 Individuals
+Outputting VCF file...
+After filtering, kept 2433 out of a possible 2433 Sites
+Run Time = 0.00 seconds

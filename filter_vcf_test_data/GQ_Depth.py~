@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+import vcf
+
+vcf_reader = vcf.Reader(open('test3.vcf', 'r'))
+for i in vcf_reader:
+    for j in i.samples:
+        ##print j['GQ']
+        j.sample
+        j['GQ']
+        j['DP']
