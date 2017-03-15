@@ -6,7 +6,7 @@ import vcf
 
 ##open both input and output files
 ##this automatically closes the files when the script is done
-with open('test3.vcf', 'r') as infile, open('test_out_py', 'w') as out_csv:
+with open('/home/ssefick/scratch/arctoides/ORINGINAL_GVCF_MACAQUE_COMBINED/split/chrM_Annotations/filtered_chrM_RGQ_VQSR_ANNOTATED.vcf', 'r') as infile, open('test_out_py', 'w') as out_csv:
 ##infile=sys.argv[1]
 ##outfile=sys.argv[2]
 ##with open(infile, 'r') as infile, open(outfile, 'w') as out_csv:    
@@ -16,7 +16,8 @@ with open('test3.vcf', 'r') as infile, open('test_out_py', 'w') as out_csv:
     out.writerow(header)
     for i in vcf_reader:
         for j in i.samples:
-            print j['GQ']
+            if 'AC' in i.INFO:
+                print j['GQ']
             GQ_DP_SAMPLE=[j.sample, str(j['GQ']), str(j['DP']), str(i.INFO['FS']), str(i.INFO['DP']), str(i.INFO['QD'])]
             ##out_str=",".join(GQ_DP_SAMPLE)
             out.writerow(GQ_DP_SAMPLE)
