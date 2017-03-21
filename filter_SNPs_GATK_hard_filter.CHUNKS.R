@@ -4,7 +4,7 @@
 
 ############################################################################################
 #Typical Usage
-#./filter_RGQ_gVCF_working_CHUNKS.R -i test.vcf.gz -t test.vcf.gz.tbi -RGQ 30 -o test2 -C 10
+#./filter_RGQ_gVCF_working_CHUNKS.R -I test.vcf.gz -T test.vcf.gz.tbi -RGQ 30 -O test2 -C 10
 ############################################################################################
 
 suppressPackageStartupMessages(library("optparse"))
@@ -19,6 +19,16 @@ make_option(c("-T", "--tabix_index"), type="character", default="tabix_file", he
 make_option(c("-O", "--vcf_output"), type="character", default="output_vcf", help="output vcf file name", metavar="character"),
 
 make_option(c("--Reference_Genotype_Quality"), type="integer", default=20, help="Default [default %default]", metavar="number"),
+
+make_option(c("--QD"), type="integer", default=2, help="Default [default %default]", metavar="number")
+
+make_option(c("--FS"), type="integer", default=60, help="Default [default %default]", metavar="number")
+
+make_option(c("--SOR"), type="integer", default=3, help="Default [default %default]", metavar="number")
+
+make_option(c("--MQRankSum"), type="number", default=-12.5, help="Default [default %default]", metavar="number")
+
+make_option(c("--ReadPosRankSum"), type="integer", default=-8, help="Default [default %default]", metavar="number")
 
 make_option(c("--min_Depth"), type="integer", default=5, help="Default [default %default]", metavar="number"),
 
@@ -47,6 +57,11 @@ RGQ_value <- opt$Reference_Genotype_Quality
 min_DP  <- opt$min_Depth
 max_DP  <- opt$max_Depth
 GQ  <- opt$Genotype_Quality
+QD <-  opt$QD
+FS <-  opt$FS
+SOR <-  opt$SOR
+MQRankSum <-  opt$MQRankSum
+ReadPosRankSum <-  opt$ReadPosRankSum
 ################################################################################
 
 #test data
@@ -117,9 +132,9 @@ RGQ_filter <- function(x, RGQvalue=RGQ_value, minDP=min_DP, maxDP=max_DP) {
 #GATK HARD FILTERS
 #snps
 #"QD < 2.0"; "MQ < 40.0"; "FS > 60.0"; "SOR > 3.0"; "MQRankSum < -12.5"; "ReadPosRankSum < -8.0"; "DP < 5"; "DP > 120"
-snps <- function(x, minDP.=min_DP, maxDP.=max_DP, GQ.=GQ){
+snps <- function(x, minDP.=min_DP, maxDP.=max_DP, GQ.=GQ, QD.=QD, FS.=FS, SOR.=SOR, MQRankSum.=MQRankSum, ReadPosRankSum.=ReadPosRankSum){
 
-    out <- apply(info(x)$QD > 2 & info(x)$MQ > 40 & info(x)$FS < 60 & info(x)$SOR < 3 & info(x)$MQRankSum > -12.5 & info(x)$ReadPosRankSum > -8 & geno(x)$DP > minDP. & geno(x)$DP < maxDP. & geno(x)$GQ >= GQ., 1, function(x)sum(x, na.rm=TRUE))==4
+    out <- info(x)$QD > QD. & info(x)$MQ > 40 & info(x)$FS < FS. & info(x)$SOR < SOR. & info(x)$MQRankSum > MQRankSum. & info(x)$ReadPosRankSum > ReadPosRankSum & geno(x)$DP > minDP. & geno(x)$DP < maxDP. & geno(x)$GQ >= GQ.
 
     #out.. <- ifelse(!isSNV(x)==TRUE, TRUE, out.)
     
