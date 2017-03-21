@@ -20,15 +20,15 @@ make_option(c("-O", "--vcf_output"), type="character", default="output_vcf", hel
 
 make_option(c("--Reference_Genotype_Quality"), type="integer", default=20, help="Default [default %default]", metavar="number"),
 
-make_option(c("--QD"), type="integer", default=2, help="Default [default %default]", metavar="number")
+make_option(c("--QD"), type="integer", default=2, help="Default [default %default]", metavar="number"),
 
-make_option(c("--FS"), type="integer", default=60, help="Default [default %default]", metavar="number")
+make_option(c("--FS"), type="integer", default=60, help="Default [default %default]", metavar="number"),
 
-make_option(c("--SOR"), type="integer", default=3, help="Default [default %default]", metavar="number")
+make_option(c("--SOR"), type="integer", default=3, help="Default [default %default]", metavar="number"),
 
-make_option(c("--MQRankSum"), type="number", default=-12.5, help="Default [default %default]", metavar="number")
+make_option(c("--MQRankSum"), type="number", default=-12.5, help="Default [default %default]", metavar="number"),
 
-make_option(c("--ReadPosRankSum"), type="integer", default=-8, help="Default [default %default]", metavar="number")
+make_option(c("--ReadPosRankSum"), type="integer", default=-8, help="Default [default %default]", metavar="number"),
 
 make_option(c("--min_Depth"), type="integer", default=5, help="Default [default %default]", metavar="number"),
 
