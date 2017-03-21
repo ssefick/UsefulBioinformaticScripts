@@ -54,6 +54,28 @@ require(gridExtra)
 ##get data in
 x <- read.table(input, sep="\t", header=TRUE, na.strings="None")
 
+##A positive value would suggest ref near end; in practice only neg. values for filtering variants
+##ReadPosRankSum
+RPRS.plot <- ggplot(x, aes(x=ReadPosRankSum))+geom_density(alpha=0.2)
+RPRS.plot <- RPRS.plot + geom_vline(xintercept = -8, colour="red")
+RPRS.plot <- RPRS.plot + ggtitle("ReadPosRankSum - Negative values indicate ALT near ends")
+
+##A positive value would suggest ref less often supporting a site; in practice only neg. values for filtering variants
+##MQRankSum
+MQRS.plot <- ggplot(x, aes(x=MQRankSum))+geom_density(alpha=0.2)
+MQRS.plot <- MQRS.plot + geom_vline(xintercept = -12.5, colour="red")
+MQRS.plot <- MQRS.plot + ggtitle("MQRankSum of Mapping Quality - Negative values indicate ALT near ends"
+
+##SOR
+SOR.plot <- ggplot(x, aes(x=SOR))+geom_density(alpha=0.2)
+SOR.plot <- SOR.plot + geom_vline(xintercept = 3, colour="red")
+SOR.plot <- SOR.plot + ggtitle("StrandOddsRatio (SOR) - Greater than 3 shows strand bias"
+
+##MQ
+MQ.plot <- ggplot(x, aes(x=MQ))+geom_density(alpha=0.2)
+MQ.plot <- MQ.plot + geom_vline(xintercept = 40, colour="red")
+MQ.plot <- MQ.plot + ggtitle("Root Mean Square Error Mapping Quality (MQ) - Less than 40 removed"
+
 ##FS can be 0 start here
 ##plot FS data
 FS.plot <- ggplot(x, aes(x=FS))+geom_density(alpha=0.2)
@@ -72,8 +94,8 @@ DP.plot <- ggplot(x, aes(x=DP))
 DP.plot <- DP.plot + geom_density(alpha=0.2)
 DP.plot <- DP.plot + ggtitle("DP- Depth")
 
-x_bar<- mean(x$DP)
-SD <- sd(x$DP)
+x_bar<- mean(x$DP, na.rm=TRUE)
+SD <- sd(x$DP, na.rm=TRUE)
 x_bar_SD <- x_bar + (5*SD)
 
 stats <- data.frame(mean=x_bar, SD=SD, mean_plus_5xSD=x_bar_SD)
