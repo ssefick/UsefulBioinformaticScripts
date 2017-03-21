@@ -92,6 +92,11 @@ QD.plot <- ggplot(x, aes(x=QD))+geom_density(alpha=0.2)
 QD.plot <- QD.plot + geom_vline(xintercept = 2, colour="red")
 QD.plot <- QD.plot + ggtitle("QD -variant qual/unfiltered depth")
 
+##GQ
+GQ.plot <- ggplot(x, aes(x=GQ))
+GQ.plot <- GQ.plot + geom_density(alpha=0.2)
+GQ.plot <- DP.plot + ggtitle("GQ- Genotype Quality")
+
 ##plot DP
 DP.plot <- ggplot(x, aes(x=DP))
 DP.plot <- DP.plot + geom_density(alpha=0.2)
@@ -112,11 +117,12 @@ if(raw_DP=="TRUE"){
 pdf(output)
 FS.plot
 QD.plot
-DP.plot
 RPRS.plot
 MQRS.plot
 SOR.plot
 MQ.plot
+GQ.plot
+DP.plot
 
 ############################################################################
 ##table Depth Stats
