@@ -81,7 +81,10 @@ MQ.plot <- MQ.plot + ggtitle("Root Mean Square Error Mapping Quality (MQ) - Less
 FS.plot <- ggplot(x, aes(x=FS))+geom_density(alpha=0.2)
 if(!any(x$FS==0)){
 FS.plot <- FS.plot + scale_x_log10() + geom_vline(xintercept = 60, colour="red")
+}else{
+FS.plot <- FS.plot + geom_vline(xintercept = 60, colour="red")
 }
+
 FS.plot <- FS.plot + ggtitle("Fisher Strand (FS- Strand Bias Variant on F or R)")
 
 ##plot QD
