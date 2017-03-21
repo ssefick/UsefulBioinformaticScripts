@@ -64,17 +64,17 @@ RPRS.plot <- RPRS.plot + ggtitle("ReadPosRankSum - Negative values indicate ALT 
 ##MQRankSum
 MQRS.plot <- ggplot(x, aes(x=MQRankSum))+geom_density(alpha=0.2)
 MQRS.plot <- MQRS.plot + geom_vline(xintercept = -12.5, colour="red")
-MQRS.plot <- MQRS.plot + ggtitle("MQRankSum of Mapping Quality - Negative values indicate ALT near ends"
+MQRS.plot <- MQRS.plot + ggtitle("MQRankSum of Mapping Quality - Negative values indicate ALT near ends")
 
 ##SOR
 SOR.plot <- ggplot(x, aes(x=SOR))+geom_density(alpha=0.2)
 SOR.plot <- SOR.plot + geom_vline(xintercept = 3, colour="red")
-SOR.plot <- SOR.plot + ggtitle("StrandOddsRatio (SOR) - Greater than 3 shows strand bias"
+SOR.plot <- SOR.plot + ggtitle("StrandOddsRatio (SOR) - Greater than 3 shows strand bias")
 
 ##MQ
 MQ.plot <- ggplot(x, aes(x=MQ))+geom_density(alpha=0.2)
 MQ.plot <- MQ.plot + geom_vline(xintercept = 40, colour="red")
-MQ.plot <- MQ.plot + ggtitle("Root Mean Square Error Mapping Quality (MQ) - Less than 40 removed"
+MQ.plot <- MQ.plot + ggtitle("Root Mean Square Error Mapping Quality (MQ) - Less than 40 removed")
 
 ##FS can be 0 start here
 ##plot FS data
