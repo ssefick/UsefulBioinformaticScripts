@@ -110,6 +110,10 @@ pdf(output)
 FS.plot
 QD.plot
 DP.plot
+RPRS.plot
+MQRS.plot
+SOR.plot
+MQ.plot
 
 ############################################################################
 ##table Depth Stats
