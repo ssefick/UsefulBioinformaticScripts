@@ -26,7 +26,7 @@ make_option(c("--FS"), type="integer", default=60, help="Default [default %defau
 
 make_option(c("--SOR"), type="integer", default=3, help="Default [default %default]", metavar="number"),
 
-make_option(c("--MQRankSum"), type="number", default=-12.5, help="Default [default %default]", metavar="number"),
+make_option(c("--MQRankSum"), type="double", default=-12.5, help="Default [default %default]", metavar="number"),
 
 make_option(c("--ReadPosRankSum"), type="integer", default=-8, help="Default [default %default]", metavar="number"),
 
