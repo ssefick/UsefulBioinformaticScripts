@@ -29,7 +29,7 @@ outfile=sys.argv[2]
 with open(infile, 'r') as infile, open(outfile, 'w') as out_csv:    
     vcf_reader = vcf.Reader(infile)
     out = csv.writer(out_csv, delimiter='\t')
-    header=['sample', 'ReadPosRankSum', 'MQRankSum', 'SOR', 'MQ', 'QD', 'GQ', 'DP', 'FS', 'DP_multi_sample']
+    header=['sample', 'ReadPosRankSum', 'MQRankSum', 'SOR', 'MQ', 'QD', 'GQ', 'DP', 'FS', 'DP', 'QD']
     out.writerow(header)
     for i in vcf_reader:
         for j in i.samples:
@@ -50,7 +50,7 @@ with open(infile, 'r') as infile, open(outfile, 'w') as out_csv:
             else:
                 DP='None'
     
-            GQ_DP_SAMPLE=[j.sample, RPRS, MQRS, str(i.INFO['SOR']), str(i.INFO['MQ']), str(i.INFO['QD']), GQ, DP, str(i.INFO['FS']), str(i.INFO['DP'])]
+            GQ_DP_SAMPLE=[j.sample, RPRS, MQRS, str(i.INFO['SOR']), str(i.INFO['MQ']), str(i.INFO['QD']), str(j['GQ']), DP, str(i.INFO['FS']), str(i.INFO['DP']), str(i.INFO['QD'])]
             out.writerow(GQ_DP_SAMPLE)            
 
 ###########################################################################
