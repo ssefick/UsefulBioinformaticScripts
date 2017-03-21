@@ -9,10 +9,10 @@ parser <- ArgumentParser()
                                         # by default ArgumentParser will add an help option
 
 
-parser$add_argument("-i", "--input_vcf", action="store", default="Table from VCF file", dest="input_vcf",
+parser$add_argument("-I", "--input_vcf", action="store", default="Table from VCF file", dest="input_vcf",
                     help="Input %(default)s")
 
-parser$add_argument("-o", "--output_pdf", action="store", default="out.pdf", dest="output_pdf",
+parser$add_argument("-O", "--output_pdf", action="store", default="out.pdf", dest="output_pdf",
                     help="Output %(default)s")
 
 parser$add_argument("-DP", "--Depth_cut_off", action="store", default="TRUE", dest="raw_DP",
