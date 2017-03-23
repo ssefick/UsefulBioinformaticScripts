@@ -17,6 +17,7 @@ that may be of interest to plot and decide on hard filtering
 import sys
 import csv
 import vcf
+import re
 ###########################################################################
 
 ###########################################################################
@@ -29,7 +30,7 @@ outfile=sys.argv[2]
 with open(infile, 'r') as infile, open(outfile, 'w') as out_csv:    
     vcf_reader = vcf.Reader(infile)
     out = csv.writer(out_csv, delimiter='\t')
-    header=['sample', 'ReadPosRankSum', 'MQRankSum', 'SOR', 'MQ', 'QD', 'GQ', 'DP', 'FS', 'DP_multi_sample']
+    header=['sample', 'CHROM', 'POS', 'ReadPosRankSum', 'MQRankSum', 'SOR', 'MQ', 'QD', 'GQ', 'DP', 'FS', 'DP_multi_sample', 'RGQ']
     out.writerow(header)
     for i in vcf_reader:
         for j in i.samples:
@@ -41,7 +42,9 @@ with open(infile, 'r') as infile, open(outfile, 'w') as out_csv:
                 MQRS=str(i.INFO['MQRankSum'])
             else:
                 MQRS='None'
-            if 'GQ' in str(j):
+            ## if 'GQ' in str(j):
+            ##     GQ=str(j['GQ'])
+            if re.search(r'\bGQ', str(j)) is not None:
                 GQ=str(j['GQ'])
             else:
                 GQ='None'
@@ -49,8 +52,31 @@ with open(infile, 'r') as infile, open(outfile, 'w') as out_csv:
                 DP=str(j['DP'])
             else:
                 DP='None'
-    
-            GQ_DP_SAMPLE=[j.sample, RPRS, MQRS, str(i.INFO['SOR']), str(i.INFO['MQ']), str(i.INFO['QD']), GQ, DP, str(i.INFO['FS']), str(i.INFO['DP'])]
+            if re.search(r'\bRGQ', str(j)) is not None:
+                RGQ=str(j['RGQ'])
+            else:
+                RGQ='None'
+            if 'SOR' in i.INFO:
+                SOR=str(i.INFO['SOR'])
+            else:
+                SOR='None'
+            if 'MQ' in i.INFO:
+                MQ=str(i.INFO['MQ'])
+            else:
+                MQ='None'
+            if 'QD' in i.INFO:
+                QD=str(i.INFO['QD'])
+            else:
+                QD='None'
+            if 'FS' in i.INFO:
+                FS=str(i.INFO['FS'])
+            else:
+                FS='None'
+            if 'DP' in i.INFO:
+                DP_multi_sample=str(i.INFO['DP'])
+            else:
+                DP_multi_sample='None'    
+            GQ_DP_SAMPLE=[j.sample, i.CHROM, i.POS, RPRS, MQRS, SOR, MQ, QD, GQ, DP, FS, DP_multi_sample, RGQ]
             out.writerow(GQ_DP_SAMPLE)            
 
 ###########################################################################
