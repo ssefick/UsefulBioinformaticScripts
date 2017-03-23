@@ -115,13 +115,21 @@ if(raw_DP=="TRUE"){
 }
 
 pdf(output)
+
 FS.plot
+
 QD.plot
+
 RPRS.plot
+
 MQRS.plot
+
 SOR.plot
+
 MQ.plot
+
 GQ.plot
+
 DP.plot
 
 ############################################################################
