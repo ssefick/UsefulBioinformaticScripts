@@ -95,7 +95,7 @@ QD.plot <- QD.plot + ggtitle("QD -variant qual/unfiltered depth")
 ##GQ
 GQ.plot <- ggplot(x, aes(x=GQ))
 GQ.plot <- GQ.plot + geom_density(alpha=0.2)
-GQ.plot <- DP.plot + ggtitle("GQ- Genotype Quality")
+GQ.plot <- GQ.plot + ggtitle("GQ- Genotype Quality")
 
 ##plot DP
 DP.plot <- ggplot(x, aes(x=DP))
