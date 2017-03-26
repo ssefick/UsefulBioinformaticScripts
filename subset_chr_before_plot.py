@@ -36,10 +36,9 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
     for line in infile:
         #if the pattern is matched move to the next line
         if pattern.match(line):
-            chr=0
-            continue
+            chr=1
         else:
-            chr=1    
+            chr=0    
             
         #write the file out    
         outfile.write(first_line)
