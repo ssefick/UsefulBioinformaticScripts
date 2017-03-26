@@ -34,13 +34,12 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
     #what we want to remove    
     for line in infile:
         #if the pattern is matched move to the next line
-#        if "CHROM" in line:
-#            chr=1
+        #if "CHROM" in line:
+        #    chr=1
         if pattern.match(line):
             chr=1
         else:
             chr=0    
-            continue    
         #write the file out    
         if chr==1:
             #print(line)
