@@ -36,14 +36,14 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
         #if the pattern is matched move to the next line
         #if "CHROM" in line:
         #    chr=1
-        #if pattern.match(line):
-        #    chr=1
+        if pattern.match(line):
+            chr=1
         #else:
         #    chr=0    
         ##write the file out    
-        #if chr==1:
+        if chr==1:
             #print(line)
-        outfile.write(line)
+            outfile.write(line)
 
 
 
