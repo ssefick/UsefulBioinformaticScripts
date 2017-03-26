@@ -44,7 +44,7 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
         if chr==1:
             #print(line)
             outfile.write(line)
-    #outfile.seek(0)
-    #outfile.write(first_line)
+    outfile.seek(0)
+    outfile.write(first_line)
 
 
