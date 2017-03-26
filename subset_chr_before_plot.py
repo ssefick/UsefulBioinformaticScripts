@@ -33,9 +33,10 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
     #set place holder variable to 0 if matches
     #what we want to remove    
     first_line = infile.readline()
+    outfile.write(first_line)
     for line in infile:
         #if the pattern is matched move to the next line
-        if re.search(pattern, line):
+        elif re.search(pattern, line):
             chr = 1
         else:
             chr = 0
@@ -44,7 +45,7 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
         if chr==1:
             #print(line)
             outfile.write(line)
-    outfile.seek(0)
-    outfile.write(first_line)
+    #outfile.seek(0)
+    #outfile.write(first_line)
 
 
