@@ -40,7 +40,7 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
             chr=1
         else:
             chr=0    
-            
+            continue    
         #write the file out    
         if chr==1:
             #print(line)
