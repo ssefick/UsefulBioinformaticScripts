@@ -34,7 +34,7 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
     #what we want to remove    
     first_line = infile.readline()
     outfile.write(first_line)
-    next(infile)
+    infile.next()
     for line in infile:
         #if the pattern is matched move to the next line
         if pattern.match(line):
