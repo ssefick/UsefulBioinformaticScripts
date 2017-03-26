@@ -35,7 +35,7 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
     first_line = infile.readline()
     for line in infile:
         #if the pattern is matched move to the next line
-        if pattern.match(line):
+        if remove_pattern in line:
             chr = 1
         else:
             chr = 0
