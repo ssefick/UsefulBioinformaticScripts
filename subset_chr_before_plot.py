@@ -1,20 +1,20 @@
 #!/usr/bin/python
 
-########################################################
-########################################################
-########################################################
-#Stephen A. Sefick
-#July 15, 2016
-#Use this script to remove sequences from a 
-#fasta file that match a supplied pattern
-#example usage:
-#./reference.fa.filter.py ">Unknown" dp4.fa.masked out
-#">Unknown" is the pattern
-#dp4.fa.masked is the reference genome
-#out is the outfile
-########################################################
-########################################################
-########################################################
+
+'''
+Stephen A. Sefick
+March 26, 2017
+Use this script to subset the table produced by vcf2table_to_plot
+based on a regular expression
+Everything except chrM:
+subset_chr_before_plot.py '^(?!.*chrM).*$' Arctoides_SNPs.table subset_table
+
+chrM:
+subset_chr_before_plot.py 'chrM' Arctoides_SNPs.table subset_table
+
+chrM and chrX:
+subset_chr_before_plot.py 'chrX|chrM' Arctoides_SNPs.table subset_table
+'''
 
 #import regular expression and system modules
 import re
