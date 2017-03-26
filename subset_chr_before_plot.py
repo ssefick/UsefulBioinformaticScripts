@@ -32,18 +32,19 @@ output=sys.argv[3]
 with open(input,"r") as infile, open(output, 'w') as outfile:
     #set place holder variable to 0 if matches
     #what we want to remove    
+    first_line = infile.readline()
     for line in infile:
         #if the pattern is matched move to the next line
-        #if "CHROM" in line:
-        #    chr=1
         if pattern.match(line):
-            chr=1
-        #else:
-        #    chr=0    
+            chr = 1
+        else:
+            chr = 0
+            continue
         ##write the file out    
         if chr==1:
             #print(line)
             outfile.write(line)
-
+    outfile.seek(0)
+    oufile.write(first_line)
 
 
