@@ -36,7 +36,7 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
     outfile.write(first_line)
     for line in infile:
         #if the pattern is matched move to the next line
-        elif re.search(pattern, line):
+        if re.search(pattern, line):
             chr = 1
         else:
             chr = 0
