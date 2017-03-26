@@ -45,6 +45,6 @@ with open(input,"r") as infile, open(output, 'w') as outfile:
             #print(line)
             outfile.write(line)
     outfile.seek(0)
-    oufile.write(first_line)
+    outfile.write(first_line)
 
 
