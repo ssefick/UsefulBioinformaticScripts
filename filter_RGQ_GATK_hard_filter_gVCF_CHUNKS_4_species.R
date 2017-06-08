@@ -56,10 +56,10 @@ test <- 0
 if(test==1){
 input <- "test.vcf.gz"
 tabix <- "test.vcf.gz.tbi"
-RGQ_value <- 30
+RGQ_value <- 20
 min_DP <- 5
-max_DP <- 35
-GQ <- 30
+max_DP <- 120
+GQ <- 20
 output <- "test2"
 CHUNKS <- 10
 #x <- readVcf("test.vcf.gz", genome=ref)
@@ -101,7 +101,7 @@ RGQ_filter <- function(x, RGQvalue=RGQ_value, minDP=min_DP, maxDP=max_DP) {
 
     #out <- apply(geno(x)$RGQ>=value, 1, function(x)sum(x, na.rm=TRUE))==4
     
-    out <- geno(x)$RGQ >= RGQ_value & geno(x)$DP > min_DP & geno(x)$DP < max_DP
+    out <- apply(geno(x)$RGQ >= RGQvalue & geno(x)$DP > minDP & geno(x)$DP < maxDP, 1, function(x)sum(x, na.rm=TRUE))==4
 
     #snps_indels <- isIndel(x) | isSNV(x)
     
@@ -119,7 +119,7 @@ RGQ_filter <- function(x, RGQvalue=RGQ_value, minDP=min_DP, maxDP=max_DP) {
 #"QD < 2.0"; "MQ < 40.0"; "FS > 60.0"; "SOR > 3.0"; "MQRankSum < -12.5"; "ReadPosRankSum < -8.0"; "DP < 5"; "DP > 120"
 snps <- function(x, minDP.=min_DP, maxDP.=max_DP, GQ.=GQ){
 
-    out <- info(x)$QD > 2 & info(x)$MQ > 40 & info(x)$FS < 60 & info(x)$SOR < 3 & info(x)$MQRankSum > -12.5 & info(x)$ReadPosRankSum > -8 & geno(x)$DP > minDP. & geno(x)$DP < maxDP. & geno(x)$GQ >= GQ.
+    out <- apply(info(x)$QD > 2 & info(x)$MQ > 40 & info(x)$FS < 60 & info(x)$SOR < 3 & info(x)$MQRankSum > -12.5 & info(x)$ReadPosRankSum > -8 & geno(x)$DP > minDP. & geno(x)$DP < maxDP. & geno(x)$GQ >= GQ., 1, function(x)sum(x, na.rm=TRUE))==4
 
     #out.. <- ifelse(!isSNV(x)==TRUE, TRUE, out.)
     
@@ -132,7 +132,7 @@ snps <- function(x, minDP.=min_DP, maxDP.=max_DP, GQ.=GQ){
 #"FS > 200.0"; "ReadPosRankSum < -20.0"; "SOR > 10.0"; "DP < 5"; "DP > 120"  
 indels <- function(x, minDP..=min_DP, maxDP..=max_DP, GQ..=GQ){
 
-    out <- info(x)$FS < 200 & info(x)$SOR < 3 & info(x)$ReadPosRankSum > -8 & geno(x)$DP>minDP.. & geno(x)$DP<maxDP.. & geno(x)$GQ>=GQ..
+    out <- apply(info(x)$FS < 200 & info(x)$SOR < 3 & info(x)$ReadPosRankSum > -8 & geno(x)$DP>minDP.. & geno(x)$DP<maxDP.. & geno(x)$GQ>=GQ.., 1, function(x)sum(x, na.rm=TRUE))==4
     
     #out. <- ifelse(!isIndel(x)==TRUE, TRUE, out)
     
@@ -148,7 +148,7 @@ together <- function(x){
     b <- snps(x)
     c <- indels(x)
     d <- cbind(a,b,c)
-    out <- apply(d,1,sum, na.rm=TRUE)>0
+    out <- apply(d,1,sum)>0
     return(out)
 }
 
